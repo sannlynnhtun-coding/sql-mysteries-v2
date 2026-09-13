@@ -27,7 +27,7 @@ Node.js ထည့်သွင်းထားပြီးလျှင်:
 
 ```powershell
 npm install
-npm run build
+npm run build:all
 npm test
 ```
 
@@ -39,9 +39,10 @@ npm test
 - `npm run build:css` — minified production CSS ထုတ်ရန်
 - `npm run build:assets` — SVG schema မှ PNG fallback ထုတ်ရန်
 - `npm run build:pdf` — worksheet နှင့် teacher guide PDF ထုတ်ရန်
+- `npm run build:all` — production assets နှင့် PDF အားလုံးကို local မှာ ပြန်ထုတ်ရန်
 - `npm test` — database contract နှင့် browser lesson flow စစ်ရန်
 
-Tailwind CSS သည် build-time dependency သာဖြစ်ပါတယ်။ Compiled `css/app.css` ကို repository ထဲထည့်ထားသဖြင့် learner နှင့် static host တို့တွင် Node.js မလိုပါ။
+`npm run build` သည် Vercel ကဲ့သို့ static host များအတွက် browser မလိုသော production assets များကိုသာ ထုတ်ပေးပါတယ်။ PDF များပြန်ထုတ်လိုလျှင် Playwright browser ပါသော local environment မှာ `npm run build:all` ကို သုံးပါ။ Tailwind CSS သည် build-time dependency သာဖြစ်ပါတယ်။ Compiled `css/app.css` ကို repository ထဲထည့်ထားသဖြင့် learner နှင့် static host တို့တွင် Node.js မလိုပါ။
 
 ## အဖြေ
 
