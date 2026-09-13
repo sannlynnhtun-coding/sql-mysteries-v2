@@ -1,51 +1,54 @@
-# SQL Murder Mystery
+# SQL Village: The Golden Duck Mystery
 
-![Illustration of a detective looking at evidence](174092-clue-illustration.png)
+မြန်မာစကားပြော SQL beginner များအတွက် browser ထဲမှာ တိုက်ရိုက်ကစားနိုင်သော အဆင့်လိုက် SQL mystery ဖြစ်ပါတယ်။ မြို့တော်ဝန်၏ ရွှေဘဲရုပ်ကို ခိုးယူသွားသူအား `SELECT`, `WHERE`, `ORDER BY`, `LIMIT`, `LIKE` နှင့် `JOIN` တို့သုံးပြီး ဖော်ထုတ်ရပါမယ်။
 
-There's been a Murder in SQL City! The SQL Murder Mystery is designed to be both a self-directed lesson to learn SQL concepts and commands and a fun game for experienced SQL users to solve an intriguing crime.
+## ကစားရန်
 
-If you just want to solve the mystery, go to [mystery.knightlab.com](https://mystery.knightlab.com). If you're new to SQL, you may want to start at [our walkthrough](https://mystery.knightlab.com/walkthrough.html). It won't teach you everything about SQL, but it should teach you all that you need to solve the mystery.  
+Browser security ကြောင့် `index.html` ကို double-click ဖြင့်မဖွင့်ဘဲ project folder မှ local server စတင်ပါ။
 
-## What Else is Here?
-
-Before we built the web-based version, we designed this for people to download and solve on their own computer. If you're interested in that, read on.
-
-## What you need to solve on your own computer
-
-* **sql-murder-mystery.db**: This SQLite database file contains all the data that you will be working with.
-* **prompt**: Depending on your experience level with SQL, find the prompt in either the [prompt_experienced](https://github.com/NUKnightLab/sql-mysteries/blob/master/prompt_experienced.pdf) file or the [prompt_beginner](https://github.com/NUKnightLab/sql-mysteries/blob/master/prompt_beginner.pdf) file.
-* **[reference](https://github.com/NUKnightLab/sql-mysteries/blob/master/reference.pdf)**: This is a crash course on SQL concepts and commands.
-* **a SQLite environment of your choice**: For beginners, we recommend using [SQLiteStudio](https://sqlitestudio.pl/), which is a good graphical interface to use to inspect your data and write queries.
-
-## Getting Started
-* **For SQL beginners**: start with the reference, read the [prompt_beginner](https://github.com/NUKnightLab/sql-mysteries/blob/master/prompt_beginner.pdf) file, then get started by [installing SQLiteStudio and loading the db file](https://github.com/NUKnightLab/sql-mysteries/blob/master/sqlite_studio.pdf). If you get stuck at any point, feel free to refer back to the reference, or file a [GitHub issue](https://github.com/NUKnightLab/sql-mysteries/issues) so we can know where our instructions need to be improved.
-
-* **For experienced SQL users**: read the [prompt_experienced](https://github.com/NUKnightLab/sql-mysteries/blob/master/prompt_experienced.pdf) file, then download the sql-murder-mystery.db file and use a SQL environment of your choice to solve the mystery. You can use the reference to refresh your memory of SQL. Try to complete the activity all within your SQL environment (without writing down notes)!
-
-
-## Checking the Solution
-Write the following queries in your SQL environment to check whether you've found the right murderer:
-
-```SQL
-INSERT INTO solution VALUES (1, "Insert the name of the person you found here");
-
-SELECT value FROM solution;
+```powershell
+python -m http.server 8000
 ```
 
+ပြီးနောက် <http://localhost:8000> ကိုဖွင့်ပါ။ Static files များသာဖြစ်သဖြင့် GitHub Pages သို့မဟုတ် မည်သည့် static host တွင်မဆို တင်နိုင်ပါတယ်။ Analytics နှင့် backend မပါဝင်ပါ။
 
-## Authors
+## Offline classroom package
 
-* [Joon Park](https://twitter.com/JoonParkMusic)
-* [Cathy He](https://twitter.com/Cathy_MeiyingHe)
+- `sql-village-theft.db` — SQLiteStudio သို့မဟုတ် SQLite client တစ်ခုခုဖြင့်ဖွင့်ရန် database
+- `walkthrough.html` / `sql-village-worksheet.pdf` — learner worksheet
+- `teacher-guide.html` / `sql-village-teacher-guide.pdf` — ဆရာ/ဆရာမအတွက် spoiler ပါသော answer guide
+- `schema.svg` / `schema.png` — table လေးခု၏ relationship diagram
 
-## Inspiration
-This murder mystery was inspired by [a crime in the neighboring Terminal City](https://github.com/veltman/clmystery "command-line murder mystery").
+Database ထဲတွင် `crime_reports`, `people`, `interviews`, `memberships` table လေးခုအတိအကျသာရှိပါတယ်။ `solution` table မရှိဘဲ interactive website က query result ကို တိုက်စစ်ပေးပါတယ်။
 
-## Copyright and License
-Original code for this project is released under [the MIT License](https://github.com/NUKnightLab/sql-mysteries/blob/master/LICENSE). 
+## Development
 
-Original text and other content is released under [Creative Commons CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). 
+Node.js ထည့်သွင်းထားပြီးလျှင်:
 
-SQL query custom web components used here were adapted from code created and released to the public domain by Zi Chong Kao, creator of [Select Star SQL](https://selectstarsql.com/).
+```powershell
+npm install
+npm run build
+npm test
+```
 
-[Detective image by rambleron](https://www.vecteezy.com/vector-art/174092-clue-illustration) used under Vecteezy's free license.
+အသုံးဝင်သော scripts:
+
+- `npm run dev:css` — Tailwind CSS watch mode
+- `npm run build:vendor` — CodeMirror, SQL.js နှင့် local fonts ကို copy လုပ်ရန်
+- `npm run build:db` — `database/setup.sql` မှ SQLite database ပြန်တည်ဆောက်ရန်
+- `npm run build:css` — minified production CSS ထုတ်ရန်
+- `npm run build:assets` — SVG schema မှ PNG fallback ထုတ်ရန်
+- `npm run build:pdf` — worksheet နှင့် teacher guide PDF ထုတ်ရန်
+- `npm test` — database contract နှင့် browser lesson flow စစ်ရန်
+
+Tailwind CSS သည် build-time dependency သာဖြစ်ပါတယ်။ Compiled `css/app.css` ကို repository ထဲထည့်ထားသဖြင့် learner နှင့် static host တို့တွင် Node.js မလိုပါ။
+
+## အဖြေ
+
+Learner များအတွက် spoiler မဖြစ်စေရန် အဖြေအပြည့်ကို `teacher-guide.html` နှင့် `sql-village-teacher-guide.pdf` တို့တွင်သာ ဖော်ပြထားပါတယ်။ Interactive game တွင် hint နှစ်ဆင့်ပြီးမှ canonical query ကို ဖွင့်နိုင်ပါတယ်။
+
+## Credits and license
+
+This beginner adaptation is inspired by the original [SQL Murder Mystery](https://github.com/NUKnightLab/sql-mysteries), created by Joon Park and Cathy He at Knight Lab and adapted for the web by Joe Germuska. Browser-based SQLite is provided by [SQL.js](https://sql.js.org/), and the SQL editor uses [CodeMirror](https://codemirror.net/5/).
+
+Original code remains available under the MIT License in `LICENSE`. Original text and content attribution remains under CC BY-SA 4.0. Bundled fonts are licensed under the SIL Open Font License; their license texts are stored in `assets/fonts/`.

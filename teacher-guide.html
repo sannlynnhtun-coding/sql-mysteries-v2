@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="my">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Teacher Answer Guide · SQL Village</title>
+  <link rel="icon" href="assets/golden-duck.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body class="print-shell">
+  <main class="print-page">
+    <div class="print-actions mb-6 flex flex-wrap justify-end gap-3">
+      <a class="button-secondary" href="index.html">← Game သို့ပြန်မယ်</a>
+      <a class="button-secondary" href="sql-village-teacher-guide.pdf" download>PDF download</a>
+      <button class="button-primary" type="button" onclick="window.print()">Print guide</button>
+    </div>
+
+    <header class="print-header">
+      <div>
+        <p class="eyebrow">Teacher answer guide · Spoilers</p>
+        <h1 class="print-title mt-3">CASE NOTES</h1>
+        <p class="mt-3 text-xl font-bold">SQL Village သင်ကြားသူလမ်းညွှန်</p>
+      </div>
+      <div class="-rotate-3 border-4 border-evidence-red px-5 py-3 font-code text-sm font-bold tracking-widest text-evidence-red-ink">CONFIDENTIAL</div>
+    </header>
+
+    <section class="print-section border-evidence-red bg-[#fff7f8]">
+      <h2 class="text-xl font-bold text-evidence-red">Spoiler: အဖြေ</h2>
+      <p class="mt-3 text-lg leading-8">ရွှေဘဲရုပ်ကို ခိုးယူသူမှာ <strong>Nandar Hlaing</strong>၊ အသက် 29၊ FitLife Gym ၏ gold member ဖြစ်သည်။</p>
+    </section>
+
+    <section class="print-section">
+      <h2 class="text-xl font-bold">သင်ကြားရန်အကြံပြုချက်</h2>
+      <ul class="mt-4 list-disc space-y-3 pl-6 leading-7 text-slate-700">
+        <li>Learner ကို result table ဖတ်ခိုင်းပြီး နောက် query မရေးမီ clue ကို စကားဖြင့် ပြန်ပြောခိုင်းပါ။</li>
+        <li>Query syntax တိတိကျကျတူဖို့ မလိုပါ။ Column နဲ့ rows မှန်ကန်သော equivalent SELECT ကို website က လက်ခံသည်။</li>
+        <li>Hint 1 ကို concept အတွက်၊ Hint 2 ကို syntax scaffold အတွက် သုံးပြီး full query ကို နောက်ဆုံးမှ ဖွင့်ပါ။</li>
+        <li>သင်ခန်းစာအတွက် 35–50 မိနစ် ခွဲထားပါ။ JOIN steps နှစ်ခုအတွက် အချိန်ပိုပေးပါ။</li>
+      </ul>
+    </section>
+
+    <section class="print-break-before mt-9" aria-labelledby="answers-title">
+      <p class="eyebrow">Canonical solution path</p>
+      <h2 id="answers-title" class="mt-2 text-2xl font-bold">Step-by-step answers</h2>
+
+      <article class="print-step">
+        <p class="eyebrow">01 · SELECT</p>
+        <h3 class="mt-2 text-lg font-bold">Table စာရင်း</h3>
+        <pre class="query-block">SELECT name
+FROM sqlite_master
+WHERE type = 'table';</pre>
+        <div class="answer-block"><strong>Expected:</strong> crime_reports, interviews, memberships, people — main table ၄ ခုအတိအကျ။</div>
+      </article>
+
+      <article class="print-step">
+        <p class="eyebrow">02 · WHERE + AND</p>
+        <h3 class="mt-2 text-lg font-bold">Target report</h3>
+        <pre class="query-block">SELECT *
+FROM crime_reports
+WHERE type = 'theft'
+  AND date = '2024-03-10'
+  AND city = 'SQL Village';</pre>
+        <div class="answer-block"><strong>Expected:</strong> report_id 102။ Description မှ Padauk Street အမြင့်ဆုံးအိမ်နံပါတ်နှင့် Inya Road မှ Thiri ကို တွေ့ရမည်။</div>
+      </article>
+
+      <article class="print-step">
+        <p class="eyebrow">03 · ORDER BY + LIMIT</p>
+        <h3 class="mt-2 text-lg font-bold">ပထမသက်သေ</h3>
+        <pre class="query-block">SELECT *
+FROM people
+WHERE address_street = 'Padauk Street'
+ORDER BY address_number DESC
+LIMIT 1;</pre>
+        <div class="answer-block"><strong>Expected:</strong> person_id 3, U Hla Aung, age 61, house 88.</div>
+      </article>
+
+      <article class="print-step">
+        <p class="eyebrow">04 · LIKE</p>
+        <h3 class="mt-2 text-lg font-bold">ဒုတိယသက်သေ</h3>
+        <pre class="query-block">SELECT *
+FROM people
+WHERE name LIKE 'Thiri%'
+  AND address_street = 'Inya Road';</pre>
+        <div class="answer-block"><strong>Expected:</strong> person_id 4, Thiri Win, age 27, house 18.</div>
+      </article>
+
+      <article class="print-step">
+        <p class="eyebrow">05 · JOIN</p>
+        <h3 class="mt-2 text-lg font-bold">Interview clues</h3>
+        <pre class="query-block">SELECT p.name, i.transcript
+FROM people AS p
+JOIN interviews AS i
+  ON p.person_id = i.person_id
+WHERE p.person_id IN (3, 4);</pre>
+        <div class="answer-block"><strong>Expected:</strong> U Hla Aung က FitLife Gym လိုဂိုကိုမြင်ခဲ့ပြီး Thiri Win က gold membership card ကိုမြင်ခဲ့သည်။</div>
+      </article>
+
+      <article class="print-step">
+        <p class="eyebrow">06 · FINAL JOIN</p>
+        <h3 class="mt-2 text-lg font-bold">တရားခံ</h3>
+        <pre class="query-block">SELECT p.name, p.age, m.gym_name, m.membership_status
+FROM people AS p
+JOIN memberships AS m
+  ON p.person_id = m.person_id
+WHERE m.gym_name = 'FitLife Gym'
+  AND m.membership_status = 'gold';</pre>
+        <div class="answer-block"><strong>Expected:</strong> Nandar Hlaing | 29 | FitLife Gym | gold.</div>
+      </article>
+    </section>
+
+    <section class="print-section">
+      <h2 class="text-xl font-bold">Acceptance checklist</h2>
+      <ul class="mt-4 grid gap-3 text-sm sm:grid-cols-2">
+        <li>□ SELECT နဲ့ WHERE ကိုရှင်းပြနိုင်သည်</li>
+        <li>□ DESC နှင့် LIMIT 1 ကိုသုံးနိုင်သည်</li>
+        <li>□ LIKE wildcard ကိုနားလည်သည်</li>
+        <li>□ person_id ဖြင့် JOIN လုပ်နိုင်သည်</li>
+        <li>□ Query result မှ clue ကိုဖတ်နိုင်သည်</li>
+        <li>□ Advanced subquery မလိုဘဲ အမှုပြီးနိုင်သည်</li>
+      </ul>
+    </section>
+
+    <footer class="print-footer mt-9 border-t border-evidence-navy/15 pt-5 text-xs leading-6 text-slate-500">
+      Keep this guide separate from the learner worksheet. SQL Village beginner adaptation · MIT / CC BY-SA 4.0 attribution retained.
+    </footer>
+  </main>
+</body>
+</html>

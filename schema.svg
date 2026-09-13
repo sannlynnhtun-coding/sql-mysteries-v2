@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="schema-title schema-desc">
+  <title id="schema-title">SQL Village database schema</title>
+  <desc id="schema-desc">crime_reports is independent. people connects by person_id to interviews and memberships.</desc>
+  <rect width="1200" height="700" rx="32" fill="#EAF3F7"/>
+  <g font-family="Noto Sans Myanmar, Arial, sans-serif" fill="#12263A">
+    <text x="60" y="68" font-size="30" font-weight="700">SQL Village database map</text>
+    <text x="60" y="102" font-size="17">PK = Primary key · FK = Foreign key · ချိတ်ဆက်ရာတွင် person_id ကိုသုံးပါ</text>
+  </g>
+  <g fill="none" stroke="#D1495B" stroke-width="5" stroke-dasharray="10 10">
+    <path d="M600 340 C720 340 700 226 805 226"/>
+    <path d="M600 380 C720 380 700 494 805 494"/>
+  </g>
+  <g font-family="JetBrains Mono, Consolas, monospace" font-size="17" fill="#12263A">
+    <g transform="translate(60 150)">
+      <rect width="450" height="230" rx="18" fill="#FFFFFF" stroke="#12263A" stroke-width="3"/>
+      <path d="M0 58h450" stroke="#FFC857" stroke-width="8"/>
+      <text x="24" y="39" font-size="23" font-weight="700">crime_reports</text>
+      <text x="24" y="92"><tspan font-weight="700">PK</tspan> report_id · INTEGER</text>
+      <text x="24" y="125">date · TEXT</text>
+      <text x="24" y="158">type · TEXT</text>
+      <text x="24" y="191">city · TEXT</text>
+      <text x="24" y="218">description · TEXT</text>
+    </g>
+    <g transform="translate(60 430)">
+      <rect width="540" height="210" rx="18" fill="#FFFFFF" stroke="#12263A" stroke-width="3"/>
+      <path d="M0 58h540" stroke="#2A9D8F" stroke-width="8"/>
+      <text x="24" y="39" font-size="23" font-weight="700">people</text>
+      <text x="24" y="92"><tspan font-weight="700">PK</tspan> person_id · INTEGER</text>
+      <text x="24" y="125">name · TEXT</text>
+      <text x="24" y="158">age · INTEGER</text>
+      <text x="260" y="125">address_street · TEXT</text>
+      <text x="260" y="158">address_number · INTEGER</text>
+    </g>
+    <g transform="translate(805 130)">
+      <rect width="335" height="205" rx="18" fill="#FFFFFF" stroke="#12263A" stroke-width="3"/>
+      <path d="M0 58h335" stroke="#D1495B" stroke-width="8"/>
+      <text x="24" y="39" font-size="23" font-weight="700">interviews</text>
+      <text x="24" y="92"><tspan font-weight="700">PK</tspan> interview_id · INTEGER</text>
+      <text x="24" y="125"><tspan font-weight="700">FK</tspan> person_id · INTEGER</text>
+      <text x="24" y="158">transcript · TEXT</text>
+    </g>
+    <g transform="translate(805 405)">
+      <rect width="335" height="235" rx="18" fill="#FFFFFF" stroke="#12263A" stroke-width="3"/>
+      <path d="M0 58h335" stroke="#FFC857" stroke-width="8"/>
+      <text x="24" y="39" font-size="23" font-weight="700">memberships</text>
+      <text x="24" y="92"><tspan font-weight="700">PK</tspan> membership_id · INTEGER</text>
+      <text x="24" y="125"><tspan font-weight="700">FK</tspan> person_id · INTEGER</text>
+      <text x="24" y="158">gym_name · TEXT</text>
+      <text x="24" y="191">membership_status · TEXT</text>
+    </g>
+  </g>
+  <g font-family="Noto Sans Myanmar, Arial, sans-serif" font-size="16" font-weight="700" fill="#B83246">
+    <rect x="698" y="252" width="128" height="35" rx="17" fill="#FFFFFF" stroke="#D1495B" stroke-width="2"/>
+    <text x="718" y="275">person_id</text>
+    <rect x="698" y="462" width="128" height="35" rx="17" fill="#FFFFFF" stroke="#D1495B" stroke-width="2"/>
+    <text x="718" y="485">person_id</text>
+  </g>
+</svg>

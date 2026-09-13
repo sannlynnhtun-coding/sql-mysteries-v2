@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 150" role="img" aria-labelledby="duck-title duck-desc">
+  <title id="duck-title">ရွှေဘဲရုပ်</title>
+  <desc id="duck-desc">SQL Village အမှုတွင် ပျောက်ဆုံးနေသော ရွှေရောင်ဘဲရုပ်</desc>
+  <g fill="none" stroke="#12263A" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path fill="#FFC857" d="M53 67c4-27 23-45 49-45 24 0 43 17 43 39 0 12-6 24-15 31 4 4 8 9 10 15 4 12-5 24-18 24H55c-23 0-39-14-39-34 0-18 14-31 37-30Z"/>
+    <path fill="#F5A623" d="m144 53 26 10-27 12"/>
+    <path d="M62 95c11 10 27 14 42 10"/>
+    <circle cx="120" cy="50" r="4" fill="#12263A" stroke="none"/>
+    <path d="M43 130h93"/>
+  </g>
+</svg>

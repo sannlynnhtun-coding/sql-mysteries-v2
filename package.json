@@ -1,0 +1,28 @@
+{
+  "name": "sql-village-golden-duck-mystery",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A bilingual, beginner-friendly SQL mystery for Burmese-speaking learners.",
+  "scripts": {
+    "dev:css": "tailwindcss -i ./src/styles.css -o ./css/app.css --watch",
+    "build:vendor": "node ./scripts/copy-vendor.mjs",
+    "build:db": "node ./scripts/build-db.mjs",
+    "build:css": "tailwindcss -i ./src/styles.css -o ./css/app.css --minify",
+    "build:assets": "node ./scripts/render-schema.mjs",
+    "build:pdf": "node ./scripts/build-pdfs.mjs",
+    "build": "npm run build:vendor && npm run build:db && npm run build:css && npm run build:assets && npm run build:pdf",
+    "test": "node ./tests/verify.mjs"
+  },
+  "devDependencies": {
+    "@fontsource/bebas-neue": "5.3.0",
+    "@fontsource/jetbrains-mono": "5.3.0",
+    "@fontsource/noto-sans-myanmar": "5.3.0",
+    "@tailwindcss/cli": "4.3.3",
+    "codemirror": "5.65.21",
+    "playwright": "1.63.0",
+    "sharp": "0.35.4",
+    "sql.js": "1.14.2",
+    "tailwindcss": "4.3.3"
+  }
+}
