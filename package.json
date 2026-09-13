@@ -11,8 +11,9 @@
     "build:css": "tailwindcss -i ./src/styles.css -o ./css/app.css --minify",
     "build:assets": "node ./scripts/render-schema.mjs",
     "build:pdf": "node ./scripts/build-pdfs.mjs",
-    "build": "npm run build:vendor && npm run build:db && npm run build:css && npm run build:assets",
-    "build:all": "npm run build && npm run build:pdf",
+    "build:site": "node ./scripts/build-site.mjs",
+    "build": "npm run build:vendor && npm run build:db && npm run build:css && npm run build:assets && npm run build:site",
+    "build:all": "npm run build:vendor && npm run build:db && npm run build:css && npm run build:assets && npm run build:pdf && npm run build:site",
     "test": "node ./tests/verify.mjs"
   },
   "devDependencies": {
